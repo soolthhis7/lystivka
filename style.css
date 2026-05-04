@@ -239,50 +239,40 @@
 }
 
 @media (max-width: 480px) {
-    /* Робимо головну картку гнучким контейнером */
-    .card {
+    /* Робимо головний фіолетовий блок гнучким */
+    .card, .container { 
         display: flex !important;
-        flex-direction: column !important;
-        align-items: center !important;
-        height: auto !important;
-        min-height: 80vh;
-        padding: 20px 10px !important;
+        flex-direction: column !important; /* Елементи один під одним */
+        align-items: center !important;    /* Центрування по горизонталі */
+        justify-content: flex-start !important;
+        height: 100vh !important;          /* На весь екран телефону */
+        padding-top: 50px !important;      /* Відступ зверху */
     }
 
     /* Напис "to the most beautiful girl" */
-    .subtitle, .top-text {
-        position: static !important; /* Скасовує absolute */
-        margin-top: 10px !important;
-        order: 1;
-    }
-
-    /* Блок з тортом та білим вікном */
-    /* Якщо у вас це різні класи, застосуйте ці стилі до обох */
-    .cake-wrapper, .white-box {
-        position: static !important;
-        width: 100% !important;
-        display: flex !important;
-        flex-direction: column !important;
-        align-items: center !important;
-        order: 2;
-        margin: 20px 0 !important;
-    }
-
-    /* Сам тортик */
-    .cake {
-        position: static !important;
-        transform: scale(1) !important; /* Повертаємо нормальний розмір */
-        width: 150px !important; /* Або ваш розмір у px */
-        height: auto !important;
-        margin: 10px auto !important;
-    }
-
-    /* Текст вітання */
-    .text-content, h1 {
-        position: static !important;
-        width: 90% !important;
-        text-align: center !important;
-        order: 3;
+    .subtitle, h2 {
+        position: relative !important;
+        top: 0 !important;
+        left: 0 !important;
         margin-bottom: 20px !important;
+        text-align: center;
+    }
+
+    /* ТОРТ — виправляємо його позицію з image_4aaedb.jpg */
+    .cake, #cake {
+        position: relative !important;
+        top: 0 !important;
+        left: 0 !important;
+        transform: scale(0.8) !important; /* Трохи зменшуємо */
+        margin: 0 auto 30px auto !important;
+    }
+
+    /* Рожевий блок з білим вікном */
+    .envelope, .content-box {
+        position: relative !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 90% !important;
+        margin: 0 auto !important;
     }
 }
