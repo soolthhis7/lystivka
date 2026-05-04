@@ -238,6 +238,33 @@
     pointer-events: none;
 }
 
+/* Основні стилі для мобільних пристроїв */
+@media (max-width: 600px) {
+    .container, .card { 
+        width: 90% !important; /* Контейнер займає майже всю ширину екрану */
+        height: auto !important; /* Висота підлаштовується під вміст */
+        margin: 10px auto;
+        padding: 15px;
+    }
+
+    h1 {
+        font-size: 1.5rem !important; /* Зменшення заголовка */
+    }
+
+    p {
+        font-size: 1rem !important; /* Зменшення тексту */
+    }
+
+    img {
+        max-width: 100%; /* Зображення не виходять за межі */
+        height: auto;
+    }
+
+    /* Якщо на сайті є Flexbox або Grid, міняємо напрямок на вертикальний */
+    .row, .flex-container {
+        flex-direction: column !important;
+    }
+}
 
 
         
