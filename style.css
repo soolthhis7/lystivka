@@ -238,57 +238,56 @@
     pointer-events: none;
 }
 
-/* Адаптація для мобільних пристроїв */
-@media (max-width: 480px) {
-    /* 1. Виправляємо контейнер для тортика та тексту */
-    .cake-container, .main-content {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        width: 100%;
-        position: relative;
-        top: 0 !important; /* Скидаємо жорсткі відступи зверху */
-    }
-
-    /* 2. Зменшуємо торт, щоб він не перекривав текст */
-    .cake {
-        transform: scale(0.7); /* Зменшує торт на 30% */
-        margin-bottom: 20px;   /* Додає простір між тортом і текстом */
-    }
-
-    /* 3. Виправляємо текст "to the most beautiful girl" */
-    /* Замініть .subtitle на ваш реальний клас цього тексту */
-    .subtitle {
-        position: relative !important;
-        left: 0 !important;
-        top: 0 !important;
-        text-align: center;
-        font-size: 1.2rem !important;
-        margin: 10px 0;
-    }
-
-    /* 4. Виправляємо блок "Buon compleanno..." */
-    h1, .greeting-text {
-        font-size: 1.4rem !important;
-        text-align: center;
-        width: 90%;
-        margin: 15px auto !important;
-    }
-
-    /* 5. Виправляємо нижній текст */
-    p {
-        font-size: 1rem !important;
-        line-height: 1.4;
-        padding: 0 15px;
-    }
-
-    /* 6. Ховаємо або масштабуємо декоративні палички/лінії, якщо вони заважають */
-    .decoration-line {
-        display: none; /* Найпростіший варіант для мобілок */
-    }
+/* Базові налаштування для всього сайту */
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Центрує все по горизонталі */
+    min-height: 100vh;
+    overflow-x: hidden; /* Прибирає горизонтальну прокрутку */
 }
 
+/* Контейнер картки */
+.card {
+    position: relative;
+    width: 90%;
+    max-width: 500px; /* Обмежує ширину на комп'ютерах */
+    margin: 20px auto;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Тортик */
+.cake {
+    position: relative; /* Змініть з absolute на relative! */
+    margin: 20px 0;
+    transform: scale(1);
+    transition: 0.3s;
+}
+
+/* Текст під тортиком */
+.text-under-cake {
+    position: relative !important;
+    top: 0 !important;
+    left: 0 !important;
+    margin: 10px 0;
+    font-size: clamp(1.2rem, 5vw, 2rem); /* Автоматично зменшує шрифт на малих екранах */
+}
+
+/* Медіазапит для дуже маленьких екранів */
+@media (max-width: 480px) {
+    .cake {
+        transform: scale(0.6); /* Зменшуємо торт, щоб звільнити місце */
+    }
+    
+    h1 {
+        font-size: 1.5rem !important;
+    }
+}
 
         
 
