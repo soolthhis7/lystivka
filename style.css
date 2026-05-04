@@ -1,0 +1,246 @@
+@import url('https://fonts.googleapis.com/css?family=Nobile:400italic,700italic');
+
+        :root {
+            --border-color: #f9f9f9;
+            --vanilla: #FF69B4;
+            --chocolate: #9B59B6;
+        }
+
+        /* ГОЛОВНИЙ ФОН СТОРІНКИ З РОЗМИТТЯМ */
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            background-color: #333; /* Колір на випадок, якщо картинка не завантажиться */
+        }
+
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            /* ПОСИЛАННЯ НА ЗАДНІЙ ФОН */
+            background-image: url('https://images.unsplash.com/photo-1513151233558-d860c5398176?q=80&w=2070&auto=format&fit=crop'); 
+            background-size: cover;
+            background-position: center;
+            filter: blur(10px); /* Сила розмиття */
+            transform: scale(1.1); /* Прибирає білі краї розмиття */
+            z-index: -1;
+            opacity: 0.8; /* Прозорість фону */
+        }
+
+        /* КАРТКА */
+        .card {
+            position: relative;
+            width: 390px;
+            height: 550px;
+            border: 10px solid var(--border-color);
+            border-radius: 15px;
+            box-shadow: 0px 20px 40px rgba(0,0,0,0.4);
+            background-color: rgb(230, 190, 250);
+            cursor: pointer;
+            transition: transform 0.4s ease-in-out;
+            transform-style: preserve-3d;
+            perspective: 1200px;
+            z-index: 2;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+        }
+
+        /* ОБКЛАДИНКА (ПЕРЕДНЯ ЧАСТИНА) */
+        .card .front {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: -10px; /* Компенсація рамки */
+            left: -10px;
+            border: 10px solid var(--border-color);
+            border-radius: 15px;
+            background-color: rgb(207, 45, 240);
+            transform-origin: left;
+            transition: transform 0.8s ease-in-out;
+            z-index: 10;
+            transform-style: preserve-3d;
+        }
+
+        .card.open .front {
+            transform: rotateY(-170deg);
+        }
+
+        /* СТОРОНИ ОБКЛАДИНКИ */
+        .front-side, .back-side {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 5px;
+        }
+
+        .back-side {
+            background-color: #fff0f5;
+            transform: rotateY(180deg);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        /* ТУТ ВАШЕ ФОТО */
+        .back-side img {
+            width: 85%;
+            height: 85%;
+            object-fit: cover;
+            border: 8px solid white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        /* ВНУТРІШНІЙ ТЕКСТ */
+        .text-container {
+            width: 80%;
+            height: 80%;
+            margin: auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: absolute;
+            top: -15%;
+            left: 10%;
+            text-align: center;
+            pointer-events: none; /* Щоб текст не заважав клікати по картці */
+            
+        }
+
+        .text-container {
+    /* ... ваші стилі ... */
+    justify-content: flex-start; /* Було center */
+    padding-top: 50px;           /* Додайте відступ зверху, щоб текст не "прилип" до рамки */
+}
+
+        #head {
+            font-family: 'Nobile', sans-serif;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #ed0d7d, #E74C3C, #210404, #d14119, #e33606);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .text-container div, .text-container p {
+            font-family: 'Nobile';
+            color: #580803;
+            font-style: italic;
+            font-size: 1.3em;
+            line-height: 1.5;
+        }
+
+        /* ОРИГІНАЛЬНИЙ ТОРТ ТА ДЕКОР */
+        .hover-text { position: absolute; top: 20px; left: 50%; transform: translateX(-50%); font-family: 'Nobile'; font-size: 20px; color: white; text-shadow: 1px 1px 2px rgba(0,0,0,0.5); z-index: 5; }
+        .cover-shape-large { position: absolute; width: 55%; height: 40%; top: 28%; left: 23%; }
+        .cover-shape-large .shape-block, .cover-shape-large .shape-diamond { background-color: #FF69B4; }
+        .cover-shape-small { position: absolute; width: 40%; height: 28%; top: 35%; left: 30%; }
+        .shape-block { position: absolute; width: 100%; height: 100%; background-color: white; border-radius: 50px; box-shadow: 0 0 20px 0 rgba(0,0,0,0.5); display: flex; align-items: center; justify-content: center; overflow: hidden; }
+        .shape-diamond { position: absolute; width: 100%; height: 100%; background-color: white; transform: rotateZ(45deg); }
+
+        .cake { position: absolute; width: 100px; height: 80px; top: 50%; left: 50%; margin-top: -28px; margin-left: -50px; z-index: 4; }
+        .cake > * { position: absolute; }
+        .layer { position: absolute; display: block; width: 100px; height: 40px; border-radius: 50%; background-color: var(--chocolate); box-shadow: 0 2px 0px #5a4520, 0 4px 0px #4e3c1c, 0 6px 0px #423318, 0 8px 0px #362a14, 0 10px 0px #2a2110, 0 12px 0px #1e180c, 0 14px 0px #120f08, 0 16px 0px #060604; }
+        .layer-top { top: 0px; } .layer-middle { top: 13.2px; } .layer-bottom { top: 26.4px; }
+        .icing { top: 0.8px; left: 2px; background-color: var(--vanilla); width: 96px; height: 36px; border-radius: 50%; position: absolute; }
+        .drip { display: block; width: 20px; height: 24px; border-radius: 0 0 25px 25px; background-color: var(--vanilla); position: absolute; }
+        .drip1 { top: 22px; left: 2px; transform: skewY(15deg); height: 19px; width: 16px; }
+        .drip2 { top: 30px; left: 72px; transform: skewY(-15deg); }
+        .drip3 { top: 33px; left: 36px; width: 32px; border-radius: 0 0 40px 40px; }
+        .candle { background-color: #9B59B6; width: 6px; height: 20px; top: -8px; left: 47px; position: absolute; }
+        .flame { position: absolute; background-color: #FF6B35; width: 6px; height: 14px; border-radius: 10px/25px; top: -13px; box-shadow: 0 0 10px orange; animation: flicker 0.5s infinite; }
+        @keyframes flicker { 50% { opacity: 0.8; } }
+
+        /* ОБКЛАДИНКА - Контейнер */
+.card .front {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: -10px;
+    left: -10px;
+    border: 10px solid var(--border-color);
+    border-radius: 15px;
+    transform-origin: left;
+    transition: transform 0.8s ease-in-out;
+    z-index: 10;
+    /* Дозволяє вкладеним елементам бути в 3D */
+    transform-style: preserve-3d; 
+}
+
+/* Спільні стилі для сторін обкладинки */
+.front-side, .back-side {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    /* Ховає сторону, якщо вона повернута спиною до користувача */
+    backface-visibility: hidden; 
+    border-radius: 5px;
+}
+
+/* Лицьова частина (Торт) */
+.front-side {
+    background-color: rgb(207, 45, 240);
+    z-index: 2;
+}
+
+/* Внутрішня частина (Фотографія) */
+.back-side {
+    background-color: #fff0f5;
+    /* Повертаємо фото на 180 градусів, щоб воно стало "обличчям" після відкриття */
+    transform: rotateY(180deg); 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+/* СТИЛЬ ФОТО - Щоб не було як на скріншоті image_57cf5b.jpg */
+.back-side img {
+    width: 85%; /* Обмежуємо ширину */
+    height: 90%; /* Обмежуємо висоту */
+    object-fit: cover; /* Зберігаємо пропорції */
+    border: 8px solid white; /* Рамка як у фотографії */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    border-radius: 4px;
+}
+
+/* Анімація відкриття */
+.card.open .front {
+    transform: rotateY(-170deg);
+}
+
+/* ТЕКСТ ВСЕРЕДИНІ - Фіксуємо позицію */
+.text-container {
+    position: absolute;
+    width: 80%;
+    height: 80%;
+    top: 50px;
+    left: 10%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    text-align: center;
+    z-index: 1; /* Текст завжди під обкладинкою */
+    pointer-events: none;
+}
+
+
+
+        
+
+        
+        
